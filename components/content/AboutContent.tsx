@@ -6,18 +6,17 @@ export function AboutContent() {
 const me = {
   name: "Manpreet Singh",
   location: "New Delhi, India",
-  bio: "Computer Science undergraduate with strong foundations in data structures and algorithms (200+ LeetCode problems solved). " +
-       "Built end-to-end web applications and AI-powered features using Node.js (Express), Python, and JavaScript.",
+  bio: "Computer Science undergraduate focused on building production-style web applications and AI-powered systems. Experienced in designing end-to-end features, integrating external APIs, and making pragmatic engineering trade-offs in real-world projects.",
   education: {
-    degree: "Bachelor of Technology (Artificial intelligence)",
+    degree: "Bachelor of Technology (Artificial Intelligence)",
     college: "Newton School of Technology, Rishihood University",
     year: "2024 - 2028"
   },
   interests: [
+    "System Architecture",
     "Web Development",
     "Agentic AI",
-    "Machine Learning",
-    "System Architecture"
+    "Machine Learning"
   ]
 };
 

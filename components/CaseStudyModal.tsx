@@ -1,13 +1,38 @@
 import React from 'react';
 import { X, Server, Zap, CheckCircle } from 'lucide-react';
 
+export interface ProjectData {
+    title: string;
+    description: string;
+    tech: string[];
+    caseStudy?: {
+        problem: string;
+        features?: string[];
+        architecture: {
+            frontend: string;
+            backend: string;
+            database: string;
+            ai?: string;
+        };
+        decisions: string[];
+        outcome?: string;
+    };
+    links?: {
+        demo?: string;
+        github?: string;
+        backend?: string;
+    };
+    details?: {
+        whatItDoes: string[];
+        whatIBuilt: string[];
+        whyThisProject: string;
+    };
+}
+
 interface CaseStudyModalProps {
     isOpen: boolean;
     onClose: () => void;
-    project: {
-        title: string;
-        description: string;
-    };
+    project: ProjectData;
 }
 
 export function CaseStudyModal({ isOpen, onClose, project }: CaseStudyModalProps) {
@@ -32,69 +57,106 @@ export function CaseStudyModal({ isOpen, onClose, project }: CaseStudyModalProps
 
                 {/* Content */}
                 <div className="p-6 space-y-8">
-                    {/* The Challenge */}
-                    <section>
-                        <h3 className="flex items-center gap-2 text-[#e6edf3] font-bold text-lg mb-3">
-                            <span className="p-1.5 bg-red-500/10 text-red-400 rounded-md">
-                                <Zap className="w-4 h-4" />
-                            </span>
-                            The Challenge
-                        </h3>
-                        <p className="text-[#8b949e] leading-relaxed">
-                            The existing solution struggled with scalability during high-traffic events, leading to
-                            page load times exceeding 5 seconds. Users experienced frequent timeouts, and the
-                            legacy codebase made adding new features slow and error-prone. The goal was to reduce latency
-                            and improve developer velocity.
-                        </p>
-                    </section>
+                    {/* The Problem */}
+                    {project.caseStudy?.problem && (
+                        <section>
+                            <h3 className="flex items-center gap-2 text-[#e6edf3] font-bold text-lg mb-3">
+                                <span className="p-1.5 bg-red-500/10 text-red-400 rounded-md">
+                                    <Zap className="w-4 h-4" />
+                                </span>
+                                The Problem
+                            </h3>
+                            <p className="text-[#8b949e] leading-relaxed">
+                                {project.caseStudy.problem}
+                            </p>
+                        </section>
+                    )}
+
+                    {/* What the Product Does */}
+                    {project.caseStudy?.features && (
+                        <section>
+                            <h3 className="flex items-center gap-2 text-[#e6edf3] font-bold text-lg mb-3">
+                                <span className="p-1.5 bg-purple-500/10 text-purple-400 rounded-md">
+                                    <Zap className="w-4 h-4" />
+                                </span>
+                                What the Product Does
+                            </h3>
+                            <ul className="list-disc list-inside space-y-2 text-[#8b949e] leading-relaxed">
+                                {project.caseStudy.features.map((feature, idx) => (
+                                    <li key={idx}>{feature}</li>
+                                ))}
+                            </ul>
+                        </section>
+                    )}
 
                     {/* The Architecture */}
-                    <section>
-                        <h3 className="flex items-center gap-2 text-[#e6edf3] font-bold text-lg mb-3">
-                            <span className="p-1.5 bg-blue-500/10 text-blue-400 rounded-md">
-                                <Server className="w-4 h-4" />
-                            </span>
-                            The Architecture
-                        </h3>
-                        <div className="bg-[#161b22] border border-[#30363d] p-4 rounded-md font-mono text-sm text-[#8b949e]">
-                            <div className="flex items-center gap-2 mb-2">
-                                <div className="w-2 h-2 rounded-full bg-blue-400"></div>
-                                <span className="text-[#e6edf3]">Frontend:</span> Next.js + Tailwind (CDN Caching)
+                    {project.caseStudy?.architecture && (
+                        <section>
+                            <h3 className="flex items-center gap-2 text-[#e6edf3] font-bold text-lg mb-3">
+                                <span className="p-1.5 bg-blue-500/10 text-blue-400 rounded-md">
+                                    <Server className="w-4 h-4" />
+                                </span>
+                                The Architecture
+                            </h3>
+                            <div className="bg-[#161b22] border border-[#30363d] p-4 rounded-md font-mono text-sm text-[#8b949e]">
+                                <div className="flex items-start gap-2 mb-2">
+                                    <div className="w-2 h-2 rounded-full bg-blue-400 mt-1.5 shrink-0"></div>
+                                    <div>
+                                        <span className="text-[#e6edf3] font-semibold">Frontend:</span> <span className="text-[#8b949e]">{project.caseStudy.architecture.frontend}</span>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-2 mb-2">
+                                    <div className="w-2 h-2 rounded-full bg-green-400 mt-1.5 shrink-0"></div>
+                                    <div>
+                                        <span className="text-[#e6edf3] font-semibold">Backend:</span> <span className="text-[#8b949e]">{project.caseStudy.architecture.backend}</span>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-2 mb-2">
+                                    <div className="w-2 h-2 rounded-full bg-yellow-400 mt-1.5 shrink-0"></div>
+                                    <div>
+                                        <span className="text-[#e6edf3] font-semibold">Database:</span> <span className="text-[#8b949e]">{project.caseStudy.architecture.database}</span>
+                                    </div>
+                                </div>
+                                {project.caseStudy.architecture.ai && (
+                                    <div className="flex items-start gap-2">
+                                        <div className="w-2 h-2 rounded-full bg-purple-400 mt-1.5 shrink-0"></div>
+                                        <div>
+                                            <span className="text-[#e6edf3] font-semibold">AI Integration:</span> <span className="text-[#8b949e]">{project.caseStudy.architecture.ai}</span>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
-                            <div className="flex items-center gap-2 mb-2">
-                                <div className="w-2 h-2 rounded-full bg-green-400"></div>
-                                <span className="text-[#e6edf3]">Backend:</span> Node.js Microservices (Dockerized)
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
-                                <span className="text-[#e6edf3]">Database:</span> PostgreSQL + Redis Layer
-                            </div>
-                        </div>
-                    </section>
+                        </section>
+                    )}
 
-                    {/* The Results */}
-                    <section>
-                        <h3 className="flex items-center gap-2 text-[#e6edf3] font-bold text-lg mb-3">
-                            <span className="p-1.5 bg-green-500/10 text-green-400 rounded-md">
-                                <CheckCircle className="w-4 h-4" />
-                            </span>
-                            The Result
-                        </h3>
-                        <div className="grid grid-cols-3 gap-4">
-                            <div className="bg-[#161b22] p-3 rounded border border-[#30363d] text-center">
-                                <div className="text-2xl font-bold text-green-400">40%</div>
-                                <div className="text-xs text-[#8b949e] mt-1">Faster Load Time</div>
-                            </div>
-                            <div className="bg-[#161b22] p-3 rounded border border-[#30363d] text-center">
-                                <div className="text-2xl font-bold text-blue-400">99.9%</div>
-                                <div className="text-xs text-[#8b949e] mt-1">Uptime Achieved</div>
-                            </div>
-                            <div className="bg-[#161b22] p-3 rounded border border-[#30363d] text-center">
-                                <div className="text-2xl font-bold text-purple-400">2x</div>
-                                <div className="text-xs text-[#8b949e] mt-1">Deployment Speed</div>
-                            </div>
-                        </div>
-                    </section>
+                    {/* Key Engineering Decisions */}
+                    {project.caseStudy?.decisions && (
+                        <section>
+                            <h3 className="flex items-center gap-2 text-[#e6edf3] font-bold text-lg mb-3">
+                                <span className="p-1.5 bg-green-500/10 text-green-400 rounded-md">
+                                    <CheckCircle className="w-4 h-4" />
+                                </span>
+                                Key Engineering Decisions
+                            </h3>
+                            <ul className="space-y-3">
+                                {project.caseStudy.decisions.map((decision, idx) => (
+                                    <li key={idx} className="flex gap-3 text-[#8b949e] bg-[#161b22] p-3 rounded border border-[#30363d]">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-green-400 mt-2 shrink-0"></div>
+                                        <span className="text-sm">{decision}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </section>
+                    )}
+
+                    {/* Outcome */}
+                    {project.caseStudy?.outcome && (
+                        <section className="pt-4 border-t border-[#30363d]">
+                            <p className="text-[#c9d1d9] italic border-l-4 border-[#58a6ff] pl-4 py-1">
+                                "{project.caseStudy.outcome}"
+                            </p>
+                        </section>
+                    )}
                 </div>
 
                 <div className="p-4 border-t border-[#30363d] bg-[#161b22]/50 flex justify-end">

@@ -6,13 +6,13 @@ export function ContactPreview() {
             <h1 className="text-4xl font-bold mb-6 text-[#e0e0e0]">Get in Touch</h1>
 
             <p className="mb-8 text-lg leading-relaxed text-gray-300">
-                I'm currently looking for new opportunities. Whether you have a question or just want to say hi,
-                I'll try my best to get back to you!
+                I'm actively looking for internship and entry-level software engineering opportunities.
+                If you'd like to discuss a role, a project, or anything related to my work, feel free to reach out — I usually respond quickly.
             </p>
 
             <div className="grid gap-4 max-w-lg mb-12">
                 <a
-                    href="mailto:your.email@example.com"
+                    href="mailto:manpreet.singh2024@nst.rishihood.edu.in"
                     className="flex items-center gap-4 p-4 bg-[#252526] hover:bg-[#2a2d2e] border border-[#3e3e3e] rounded-lg transition-all hover:translate-x-1"
                 >
                     <div className="bg-[#3e3e3e] p-2 rounded-full">
@@ -20,12 +20,12 @@ export function ContactPreview() {
                     </div>
                     <div>
                         <h3 className="font-bold text-[#e0e0e0]">Email</h3>
-                        <p className="text-[#569cd6]">your.email@example.com</p>
+                        <p className="text-[#569cd6] text-sm break-all">manpreet.singh2024@nst.rishihood.edu.in</p>
                     </div>
                 </a>
 
                 <a
-                    href="https://github.com/yourusername"
+                    href="https://github.com/mansingh-04"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-4 p-4 bg-[#252526] hover:bg-[#2a2d2e] border border-[#3e3e3e] rounded-lg transition-all hover:translate-x-1"
@@ -35,12 +35,12 @@ export function ContactPreview() {
                     </div>
                     <div>
                         <h3 className="font-bold text-[#e0e0e0]">GitHub</h3>
-                        <p className="text-[#569cd6]">@yourusername</p>
+                        <p className="text-[#569cd6]">@mansingh-04</p>
                     </div>
                 </a>
 
                 <a
-                    href="https://linkedin.com/in/yourusername"
+                    href="https://www.linkedin.com/in/manpreet-singh-9bb415318/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-4 p-4 bg-[#252526] hover:bg-[#2a2d2e] border border-[#3e3e3e] rounded-lg transition-all hover:translate-x-1"
@@ -50,7 +50,7 @@ export function ContactPreview() {
                     </div>
                     <div>
                         <h3 className="font-bold text-[#e0e0e0]">LinkedIn</h3>
-                        <p className="text-[#569cd6]">in/yourusername</p>
+                        <p className="text-[#569cd6] text-sm md:text-base">in/manpreet-singh-9bb415318</p>
                     </div>
                 </a>
 
@@ -60,15 +60,15 @@ export function ContactPreview() {
                     </div>
                     <div>
                         <h3 className="font-bold text-[#e0e0e0]">Location</h3>
-                        <p className="text-gray-400">Your City, Country</p>
+                        <p className="text-gray-400">New Delhi, India</p>
                     </div>
                 </div>
             </div>
 
             <div className="text-xs text-gray-500 font-mono pt-8 border-t border-[#3e3e3e]">
                 ---<br />
-                Last updated: 2025-12-25<br />
-                Status: Open for work
+                Last updated: 2025-12-28<br />
+                Status: Open to internships & full-time opportunities
             </div>
         </div>
     );

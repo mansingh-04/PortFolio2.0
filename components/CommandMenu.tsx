@@ -93,11 +93,11 @@ export function CommandMenu({
                 </CommandGroup>
                 <CommandSeparator />
                 <CommandGroup heading="Social">
-                    <CommandItem onSelect={() => runCommand(() => window.open('https://github.com/manpreet-singh', '_blank'))}>
+                    <CommandItem onSelect={() => runCommand(() => window.open('https://github.com/mansingh-04', '_blank'))}>
                         <Github className="mr-2 h-4 w-4" />
                         <span>GitHub</span>
                     </CommandItem>
-                    <CommandItem onSelect={() => runCommand(() => window.open('https://linkedin.com', '_blank'))}>
+                    <CommandItem onSelect={() => runCommand(() => window.open('https://www.linkedin.com/in/manpreet-singh-9bb415318/', '_blank'))}>
                         <Linkedin className="mr-2 h-4 w-4" />
                         <span>LinkedIn</span>
                     </CommandItem>

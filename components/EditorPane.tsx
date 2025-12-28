@@ -12,18 +12,19 @@ interface EditorPaneProps {
     activeFile: FileType;
     openTabs: FileType[];
     viewMode: ViewMode;
+    onNavigate: (file: FileType) => void;
 }
 
-export function EditorPane({ activeFile, openTabs, viewMode }: EditorPaneProps) {
+export function EditorPane({ activeFile, openTabs, viewMode, onNavigate }: EditorPaneProps) {
     const getContentComponent = (file: FileType) => {
         // Live Mode (Markdown Preview)
         if (viewMode === 'live') {
             switch (file) {
-                case 'about': return <AboutPreview />;
+                case 'about': return <AboutPreview onNavigate={onNavigate} />;
                 case 'skills': return <SkillsPreview />;
                 case 'projects': return <ProjectsPreview />;
                 case 'contact': return <ContactPreview />;
-                default: return <AboutPreview />;
+                default: return <AboutPreview onNavigate={onNavigate} />;
             }
         }
 

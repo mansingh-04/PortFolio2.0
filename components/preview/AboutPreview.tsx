@@ -1,44 +1,24 @@
 import { useState, useEffect } from 'react';
 
-export function AboutPreview() {
+interface AboutPreviewProps {
+    onNavigate?: (file: 'contact') => void;
+}
+
+export function AboutPreview({ onNavigate }: AboutPreviewProps) {
     const [typedText, setTypedText] = useState("");
-    const fullText = "Hi, I'm Manpreet Singh 👋";
-    const [terminalLines, setTerminalLines] = useState<string[]>([]);
+    const fullText = "Manpreet Singh";
 
     useEffect(() => {
         let index = 0;
         const timer = setInterval(() => {
-            if (index < fullText.length) {
-                setTypedText(prev => prev + fullText.charAt(index));
+            if (index <= fullText.length) {
+                setTypedText(fullText.slice(0, index));
                 index++;
             } else {
                 clearInterval(timer);
             }
         }, 100);
         return () => clearInterval(timer);
-    }, []);
-
-    useEffect(() => {
-        const lines = [
-            { text: "> initializing profile...", delay: 800 },
-            { text: "> loading modules: [react, node, aws, ai]...", delay: 1500 },
-            { text: "> accessing stats...", delay: 2400 },
-            { text: "SUCCESS: 3+ Years Experience found", delay: 3000 },
-            { text: "SUCCESS: 20+ High Impact Projects loaded", delay: 3800 },
-            { text: "SUCCESS: 100% Job Success Rate verified", delay: 4600 },
-            { text: "> readiness: MAXIMUM", delay: 5400 }
-        ];
-
-        const timeouts: NodeJS.Timeout[] = [];
-
-        lines.forEach(line => {
-            const timeout = setTimeout(() => {
-                setTerminalLines(prev => [...prev, line.text]);
-            }, line.delay);
-            timeouts.push(timeout);
-        });
-
-        return () => timeouts.forEach(clearTimeout);
     }, []);
 
     return (
@@ -52,35 +32,11 @@ export function AboutPreview() {
                         </h1>
                         <div className="bg-[#161b22] border-l-4 border-[#58a6ff] p-4 my-4 rounded-r">
                             <p className="italic text-[#8b949e]">
-                                "I build things for the web."
+                                Computer Science Undergraduate | Aspiring Software Engineer (Backend & AI)
                             </p>
                         </div>
 
-                        {/* Interactive Terminal for HR Scanning */}
-                        <div className="bg-[#0d1117] border border-[#30363d] rounded-md p-4 my-6 font-mono text-sm shadow-inner min-h-[160px]">
-                            <div className="flex gap-1.5 mb-3 border-b border-[#21262d] pb-2">
-                                <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></div>
-                                <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></div>
-                                <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]"></div>
-                                <span className="ml-2 text-xs text-[#8b949e] opacity-50">bash — 80x24</span>
-                            </div>
-                            <div className="space-y-1">
-                                {terminalLines.map((line, i) => {
-                                    let colorClass = "text-[#8b949e]";
-                                    if (line.includes("Experience")) colorClass = "text-green-400";
-                                    if (line.includes("Projects")) colorClass = "text-blue-400";
-                                    if (line.includes("Job Success")) colorClass = "text-yellow-400";
-                                    if (line.includes("readiness")) colorClass = "text-purple-400 font-bold";
 
-                                    return (
-                                        <div key={i} className={`${colorClass} animate-in fade-in slide-in-from-left-2 duration-300`}>
-                                            {line}
-                                        </div>
-                                    );
-                                })}
-                                <div className="animate-cursor-blink w-2 h-4 bg-[#8b949e] inline-block align-middle ml-1"></div>
-                            </div>
-                        </div>
 
                         {/* CTA Buttons */}
                         <div className="flex gap-4 mt-2">
@@ -93,7 +49,10 @@ export function AboutPreview() {
                                     Download Resume
                                 </div>
                             </button>
-                            <button className="relative overflow-hidden group bg-[#1f6feb] text-white px-6 py-2.5 rounded-md font-bold transition-all shadow-lg border border-[rgba(240,246,252,0.1)] hover:scale-105 hover:shadow-blue-900/50">
+                            <button
+                                onClick={() => onNavigate?.('contact')}
+                                className="relative overflow-hidden group bg-[#1f6feb] text-white px-6 py-2.5 rounded-md font-bold transition-all shadow-lg border border-[rgba(240,246,252,0.1)] hover:scale-105 hover:shadow-blue-900/50"
+                            >
                                 <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
                                 Contact Me
                             </button>
@@ -103,32 +62,55 @@ export function AboutPreview() {
             </div>
 
             <div className="space-y-6">
-                <section>
+                {/* Intro Bio */}
+                <p className="leading-7 mb-8 text-[#c9d1d9] border-b border-[#30363d] pb-8">
+                    Computer Science undergraduate with strong foundations in data structures and algorithms (200+ LeetCode problems solved), and hands-on experience building backend systems and AI-powered web applications using Node.js and Python.
+                </p>
+
+                {/* Highlights */}
+                <section className="mb-8">
+                    <h2 className="text-2xl font-bold mb-4 pb-2 border-b border-[#30363d] text-[#e6edf3]">Highlights</h2>
+                    <ul className="list-disc pl-6 space-y-2 marker:text-[#58a6ff]">
+                        <li className="hover:translate-x-1 transition-transform cursor-default">
+                            Solved <strong className="text-[#e6edf3]">200+ LeetCode</strong> problems with a strong focus on DSA fundamentals
+                        </li>
+                        <li className="hover:translate-x-1 transition-transform cursor-default">
+                            Built end-to-end web applications using <strong className="text-[#e6edf3]">Node.js (Express)</strong>, <strong className="text-[#e6edf3]">React</strong>, and <strong className="text-[#e6edf3]">PostgreSQL</strong>
+                        </li>
+                        <li className="hover:translate-x-1 transition-transform cursor-default">
+                            Integrated AI-powered features using <strong className="text-[#e6edf3]">LangChain</strong> and LLM APIs
+                        </li>
+                        <li className="hover:translate-x-1 transition-transform cursor-default">
+                            Experience working across the full stack with a backend-first approach
+                        </li>
+                    </ul>
+                </section>
+
+                {/* About Me */}
+                <section className="mb-8">
                     <h2 className="text-2xl font-bold mb-4 pb-2 border-b border-[#30363d] text-[#e6edf3]">About Me</h2>
-                    <p className="leading-7 mb-4">
-                        Computer Science undergraduate with strong foundations in data structures and algorithms (200+ LeetCode problems solved).
-                        Built end-to-end web applications and AI-powered features using Node.js (Express), Python, and JavaScript.
-                    </p>
                     <p className="leading-7">
-                        When I'm not coding, you can find me exploring new technologies, contributing to open source, or gaming.
+                        I am a Computer Science undergraduate pursuing a B.Tech in Artificial Intelligence. I enjoy working on backend systems, solving algorithmic problems, and building practical AI-driven applications. I focus on writing clean, maintainable code and understanding systems end-to-end.
                     </p>
                 </section>
 
-                <section className="pt-4">
+                {/* Education */}
+                <section className="mb-8">
                     <h2 className="text-2xl font-bold mb-4 pb-2 border-b border-[#30363d] text-[#e6edf3]">Education</h2>
                     <div className="mb-4">
-                        <h3 className="text-xl font-bold text-[#e6edf3]">Bachelor of Technology (Artificial intelligence)</h3>
-                        <div className="text-[#8b949e] mb-2">Newton School of Technology, Rishihood University</div>
-                        <div className="text-sm text-[#8b949e] font-mono">2024 - 2028</div>
+                        <h3 className="text-xl font-bold text-[#e6edf3]">Bachelor of Technology (Artificial Intelligence)</h3>
+                        <div className="text-[#8b949e] mb-1">Newton School of Technology, Rishihood University</div>
+                        <div className="text-sm text-[#8b949e] font-mono">2024 – 2028</div>
                     </div>
                 </section>
 
-                <section className="pt-4">
-                    <h2 className="text-2xl font-bold mb-4 pb-2 border-b border-[#30363d] text-[#e6edf3]">Interests</h2>
+                {/* Technical Interests */}
+                <section>
+                    <h2 className="text-2xl font-bold mb-4 pb-2 border-b border-[#30363d] text-[#e6edf3]">Technical Interests</h2>
                     <ul className="list-disc pl-6 space-y-2 marker:text-[#58a6ff]">
-                        <li className="hover:translate-x-1 transition-transform cursor-default">Agentic AI & Machine Learning</li>
-                        <li className="hover:translate-x-1 transition-transform cursor-default">Web Development</li>
-                        <li className="hover:translate-x-1 transition-transform cursor-default">System Architecture</li>
+                        <li className="hover:translate-x-1 transition-transform cursor-default">Agentic AI & Applied Machine Learning</li>
+                        <li className="hover:translate-x-1 transition-transform cursor-default">Backend & System Design</li>
+                        <li className="hover:translate-x-1 transition-transform cursor-default">Web Application Architecture</li>
                     </ul>
                 </section>
             </div>

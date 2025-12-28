@@ -3,42 +3,49 @@ import { CodeBlock } from "../CodeBlock";
 export function SkillsContent() {
   const code = `/**
  * Technical Skills & Expertise
- * Organized by category and proficiency level
+ * Focused on real-world development, AI integration, and scalable systems
  */
 
 const skills = {
-  frontend: {
-    "React": "Expert",
-    "TypeScript": "Expert",
-    "Next.js": "Advanced",
-    "Tailwind CSS": "Expert",
-    "Redux": "Advanced"
-  },
+  languages: [
+    "JavaScript",
+    "Python",
+  ],
 
-  backend: {
-    "Node.js": "Advanced",
-    "Express": "Advanced",
-    "Python": "Intermediate",
-    "PostgreSQL": "Advanced",
-    "MongoDB": "Advanced",
-    "GraphQL": "Intermediate"
-  },
+  frontend: [
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "HTML",
+    "CSS",
+  ],
 
-  devops: {
-    "Docker": "Advanced",
-    "AWS": "Intermediate",
-    "Git": "Expert",
-    "CI/CD": "Advanced",
-    "Kubernetes": "Intermediate"
-  },
+  backend: [
+    "Node.js",
+    "Express.js",
+    "Flask (basic)",
+  ],
+
+  databases: [
+    "PostgreSQL",
+    "MySQL",
+    "MongoDB",
+  ],
+
+  ai_ml: [
+    "LangChain",
+    "LLM Integration (Gemini API)",
+    "Prompt Engineering",
+    "ML Model API Integration",
+  ],
 
   tools: [
-    "VS Code",
-    "Figma",
+    "Visual Studio Code",
+    "Cursor",
     "Postman",
-    "Jira",
-    "Slack"
-  ]
+    "GitHub",
+    "Figma",
+  ],
 };
 
 export default skills;`;

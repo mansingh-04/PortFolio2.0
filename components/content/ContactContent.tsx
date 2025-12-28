@@ -2,23 +2,28 @@ import { CodeBlock } from "../CodeBlock";
 
 export function ContactContent() {
   const code = `const contact = {
-  email: "your.email@example.com",
-  location: "Your City, Country",
+  email: "manpreet.singh2024@nst.rishihood.edu.in",
+  location: "New Delhi, India",
+
+  status: "Open to internships & full-time software engineering opportunities",
+
   social: {
-    github: "github.com/yourusername",
-    linkedin: "linkedin.com/in/yourusername",
-    twitter: "twitter.com/yourusername"
+    github: "https://github.com/mansingh-04",
+    linkedin: "https://www.linkedin.com/in/manpreet-singh-9bb415318",
+    leetcode: "https://leetcode.com/u/mansingh_04/",
+    twitter: null
   }
 };
 
-// ---------------------------------------------------
-// Terminal Commands to access links:
-// 
-// Email:    Type 'open email'
-// GitHub:   Type 'open github'
-// LinkedIn: Type 'open linkedin'
-// Twitter:  Type 'open twitter'
-// ---------------------------------------------------
+// --------------------------------------------------
+// Terminal Commands:
+// --------------------------------------------------
+// contact           → Show all contact information
+// open email        → Open default mail client
+// open github       → Open GitHub profile
+// open linkedin     → Open LinkedIn profile
+// open leetcode     → Open LeetCode profile
+// --------------------------------------------------
 
 export default contact;`;
 

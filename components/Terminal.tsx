@@ -24,23 +24,22 @@ export function Terminal({ activeFile, openTabs, setViewMode, setReaderMode }: T
     }, [history]);
 
     const commands: Record<string, string> = {
-        help: 'Available commands:\n  npm start   - Start development server (Live View)\n  about       - Show information about me\n  skills      - List my technical skills\n  projects    - View my recent projects\n  contact     - Get contact information\n  clear       - Clear terminal\n  github      - Open GitHub profile\n  linkedin    - Open LinkedIn profile\n  cat stats   - View career statistics\n  man ecommerce - View Ecommerce Case Study',
+        help: 'Available commands:\n  npm start             - Start development server (Live View)\n  npm run start <app> - Open project demo (e.g., drplant, movieverse)\n  man <app>           - View project manual (e.g., drplant)\n  about               - Show information about me\n  skills              - List my technical skills\n  projects            - List available projects\n  contact             - Get contact information\n  clear               - Clear terminal\n  cat stats           - View career statistics',
         about: `
 User: Manpreet Singh
 Location: New Delhi, India
 Education:
-  Degree: Bachelor of Technology (Artificial intelligence)
+  Degree: Bachelor of Technology (Artificial Intelligence)
   College: Newton School of Technology, Rishihood University
   Year: 2024 - 2028
-Bio: Computer Science undergraduate with strong foundations in data structures and algorithms (200+ LeetCode problems solved). Built end-to-end web applications and AI-powered features using Node.js (Express), Python, and JavaScript.
-
-Type 'skills' or 'projects' to learn more.
+Bio: Artificial Intelligence undergraduate and Full Stack Developer. Passionate about building scalable applications and exploring AI integration. Always learning and building.
 `,
-        skills: 'Frontend: React, TypeScript, Tailwind CSS\nBackend: Node.js, Python, PostgreSQL\nTools: Git, Docker, AWS',
-        projects: 'Loading projects...\n1. E-commerce Platform\n2. Task Management System\n3. Real-time Chat Application\nUse the Projects tab for detailed information!',
-        contact: 'Email: your.email@example.com\nGitHub: github.com/yourusername\nLinkedIn: linkedin.com/in/yourusername',
+        skills: 'Frontend: React, Next.js, TypeScript, Tailwind CSS\nBackend: Node.js, Express, Python, PostgreSQL, Firebase\nTools: Git, GitHub, VS Code, Postman\nAI/ML: LangChain, Gemini API',
+        projects: 'Available Projects:\n1. DrPlant (dr-plant)\n   - AI-Powered Plant Health Analyzer\n   - Stack: Node.js, PostgreSQL, React, LangChain\n\n2. MovieVerse (movieverse)\n   - Movie Discovery & Trivia Platform\n   - Stack: Next.js, Firebase, TMDB API\n\nType "man <project_name>" for details.',
+        contact: 'Email: manpreet.singh2024@nst.rishihood.edu.in\nGitHub: github.com/mansingh-04\nLinkedIn: linkedin.com/in/manpreet-singh-9bb415318\nLeetCode: leetcode.com/u/mansingh_04/\nLocation: New Delhi, India',
         github: 'Opening GitHub profile...',
         linkedin: 'Opening LinkedIn profile...',
+        leetcode: 'Opening LeetCode profile...',
         clear: 'CLEAR',
     };
 
@@ -72,44 +71,84 @@ Type 'skills' or 'projects' to learn more.
 
         if (trimmedCmd === 'cat stats') {
             const stats = `
-╔════════════════════════════════════════╗
-║             CAREER STATS               ║
-╠════════════════════════════════════════╣
-║  🚀 Experience:      3+ Years          ║
-║  💻 Projects:        20+ Completed     ║
-║  🌟 Job Success:     100%              ║
-║  🤝 Team Size:       Lead 5+ Devs      ║
-║  ⚡ Response Time:   < 2 Hours         ║
-╚════════════════════════════════════════╝`;
+MANPREET'S STATS ║
+╠══════════════════════════════════════════════════════╣
+║ 🎓 Education  : B.Tech (Artificial Intelligence)     ║
+║ 🏫 Institute  : Newton School of Technology (NST)    ║
+║ 🧠 DSA        : 200+ LeetCode problems solved        ║
+║ 💻 Core Stack : Node.js, React (TS), PostgreSQL      ║
+║ 🤖 AI Work    : LangChain, Gemini API, ML APIs       ║
+║ 🛠️ Projects   : DrPlant, MovieVerse + others        ║
+║ 📍 Location   : New Delhi, India                     ║
+║ 🚀 Status     : Open to internships & full-time      ║
+╚══════════════════════════════════════════════════════╝`;
             setHistory([...history, { command: cmd, output: stats }]);
             return;
         }
 
-        if (trimmedCmd === 'man ecommerce') {
+        if (trimmedCmd === 'man drplant' || trimmedCmd === 'man dr-plant') {
             const caseStudy = `
 NAME
-    ecommerce - Scalable Full-Stack E-Commerce Platform
+    DrPlant — AI-Powered Plant Health Analyzer
+
+PROBLEM
+    Plant owners lack an easy way to identify diseases, track health changes, 
+    and receive actionable care guidance over time.
+
+SOLUTION
+    • Image-based plant disease detection using an external ML model
+    • Context-aware care recommendations using Gemini via LangChain
+    • Visual history tracking to monitor plant health over time
+
+SYSTEM DESIGN
+    Frontend:   React (TypeScript) with responsive UI and image upload flow
+    Backend:    Node.js + Express for API orchestration and caching
+    Database:   PostgreSQL for metadata, logs, and analysis history
+    AI:         External ML API + Gemini (via LangChain)
+
+ENGINEERING DECISIONS
+    • Cached analysis results to prevent redundant AI calls and reduce cost
+    • Limited stored analysis history to last 5 entries per plant
+    • Separated raw ML detection from AI-generated care guidance
+    • Injected user care logs into AI prompts for personalized recommendations
+
+Running...
+    Type 'npm run start drplant' to see the live demo.`;
+            setHistory([...history, { command: cmd, output: caseStudy }]);
+            return;
+        }
+
+        if (trimmedCmd === 'man movieverse') {
+            const info = `
+NAME
+    movieverse — Movie Discovery & Trivia Platform
 
 SYNOPSIS
-    A high-performance solution handling 10k+ concurrent users.
+    Frontend-focused web application built with Next.js for discovering movies,
+    engaging users through trivia, and managing personal watchlists.
 
 DESCRIPTION
-    The Challenge:
-        Legacy system crashed during Black Friday. Latency > 5s.
+    MovieVerse was built to practice real-world API integration, frontend state
+    management, and authenticated user flows.
 
-    The Architecture:
-        - Frontend: Next.js + Tailwind (CDN Caching)
-        - Backend: Node.js Microservices (Dockerized)
-        - Database: PostgreSQL + Redis Layer
+FEATURES
+    • Search and explore movies using the TMDB API
+    • Browse movies by genre with dynamic recommendations
+    • Play a timed movie trivia game
+    • Maintain a personal watchlist with authentication
 
-    The Result:
-        - 40% Faster Load Time
-        - 99.9% Uptime Achieved
-        - 2x Deployment Speed
+TECH STACK
+    • Next.js, React, Tailwind CSS
+    • Firebase Authentication & Firestore
+    • TMDB API
 
-AUTHOR
-    Manpreet Singh`;
-            setHistory([...history, { command: cmd, output: caseStudy }]);
+SCOPE
+    This project intentionally focuses on frontend architecture, UX,
+    and third-party API integration rather than complex backend systems.
+
+Running...
+    Type 'npm run start movieverse' to see the live demo.`;
+            setHistory([...history, { command: cmd, output: info }]);
             return;
         }
 
@@ -123,49 +162,42 @@ AUTHOR
 
         // Link handling
         if (trimmedCmd.startsWith('npm run start ')) {
-            const project = trimmedCmd.replace('npm run start ', '');
+            const project = trimmedCmd.replace('npm run start ', '').trim();
             switch (project) {
-                case 'project1':
-                    window.open('https://demo.example.com', '_blank');
-                    setHistory([...history, { command: cmd, output: 'Starting development server for Project 1...\nOpening https://demo.example.com' }]);
+                case 'drplant':
+                case 'dr-plant':
+                    window.open('https://dr-plant-one.vercel.app/', '_blank');
+                    setHistory([...history, { command: cmd, output: 'Starting DrPlant production build...\nOpening https://dr-plant-one.vercel.app/' }]);
                     return;
-                case 'project3':
-                    window.open('https://analytics.example.com', '_blank');
-                    setHistory([...history, { command: cmd, output: 'Starting analytics dashboard...\nOpening https://analytics.example.com' }]);
+                case 'movieverse':
+                    window.open('https://capstone-sem2.vercel.app/', '_blank');
+                    setHistory([...history, { command: cmd, output: 'Starting MovieVerse...\nOpening https://capstone-sem2.vercel.app/' }]);
                     return;
                 default:
-                    setHistory([...history, { command: cmd, output: `Error: Project '${project}' not found or has no live demo.` }]);
+                    setHistory([...history, { command: cmd, output: `Error: Project '${project}' not found.\nTry 'drplant' or 'movieverse'.` }]);
                     return;
             }
         }
 
         if (trimmedCmd.startsWith('open ')) {
-            const target = trimmedCmd.replace('open ', '');
+            const target = trimmedCmd.replace('open ', '').trim();
             switch (target) {
                 case 'github':
                 case 'github.com':
-                    window.open('https://github.com/yourusername', '_blank');
+                    window.open('https://github.com/mansingh-04', '_blank');
                     setHistory([...history, { command: cmd, output: 'Opening GitHub profile...' }]);
                     return;
                 case 'linkedin':
-                    window.open('https://linkedin.com/in/yourusername', '_blank');
+                    window.open('https://www.linkedin.com/in/manpreet-singh-9bb415318/', '_blank');
                     setHistory([...history, { command: cmd, output: 'Opening LinkedIn profile...' }]);
                     return;
-                case 'twitter':
-                    window.open('https://twitter.com/yourusername', '_blank');
-                    setHistory([...history, { command: cmd, output: 'Opening Twitter profile...' }]);
+                case 'leetcode':
+                    window.open('https://leetcode.com/u/mansingh_04/', '_blank');
+                    setHistory([...history, { command: cmd, output: 'Opening LeetCode profile...' }]);
                     return;
                 case 'email':
-                    window.location.href = 'mailto:your.email@example.com';
+                    window.location.href = 'mailto:manpreet.singh2024@nst.rishihood.edu.in';
                     setHistory([...history, { command: cmd, output: 'Opening default mail client...' }]);
-                    return;
-                case 'project1-github':
-                    window.open('https://github.com/yourusername/ecommerce', '_blank');
-                    setHistory([...history, { command: cmd, output: 'Opening Project 1 repository...' }]);
-                    return;
-                case 'project2-github':
-                    window.open('https://github.com/yourusername/taskmanager', '_blank');
-                    setHistory([...history, { command: cmd, output: 'Opening Project 2 repository...' }]);
                     return;
                 default:
                     setHistory([...history, { command: cmd, output: `Error: Link '${target}' not found.` }]);
