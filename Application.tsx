@@ -291,7 +291,7 @@ function App() {
                 activeFile={activeFile}
                 openTabs={openTabs}
                 viewMode={viewMode}
-                onNavigate={setActiveFile}
+                onNavigate={handleFileClick}
               />
             ) : !readerMode && (
               <div className="h-full w-full flex flex-col items-center justify-center text-[#3b3b3b]">

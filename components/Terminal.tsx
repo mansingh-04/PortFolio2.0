@@ -37,9 +37,6 @@ Bio: Artificial Intelligence undergraduate and Full Stack Developer. Passionate 
         skills: 'Frontend: React, Next.js, TypeScript, Tailwind CSS\nBackend: Node.js, Express, Python, PostgreSQL, Firebase\nTools: Git, GitHub, VS Code, Postman\nAI/ML: LangChain, Gemini API',
         projects: 'Available Projects:\n1. DrPlant (dr-plant)\n   - AI-Powered Plant Health Analyzer\n   - Stack: Node.js, PostgreSQL, React, LangChain\n\n2. MovieVerse (movieverse)\n   - Movie Discovery & Trivia Platform\n   - Stack: Next.js, Firebase, TMDB API\n\nType "man <project_name>" for details.',
         contact: 'Email: manpreet.singh2024@nst.rishihood.edu.in\nGitHub: github.com/mansingh-04\nLinkedIn: linkedin.com/in/manpreet-singh-9bb415318\nLeetCode: leetcode.com/u/mansingh_04/\nLocation: New Delhi, India',
-        github: 'Opening GitHub profile...',
-        linkedin: 'Opening LinkedIn profile...',
-        leetcode: 'Opening LeetCode profile...',
         clear: 'CLEAR',
     };
 
